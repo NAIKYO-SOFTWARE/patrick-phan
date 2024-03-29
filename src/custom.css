@@ -1,0 +1,48 @@
+.strike-sides {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .strike-sides::before,
+  .strike-sides::after {
+    content: "   ";
+    position: absolute;
+    bottom: 50%;
+    width: 150px;
+    height: 1px;
+    background-color: #616161;
+  }
+  
+  .strike-sides::before {
+    left: 54px;
+  }
+  
+  .strike-sides::after {
+    right: 54px;
+  }
+
+  .vertical-alignment {
+    display: flex;
+    align-items: center;
+    height: 100vh; /* Adjust this value based on your layout */
+  }
+  
+  /* cái này sẽ làm cho content trong thẻ căn giữa dọc và căn giữa ngang bên trong thẻ div chứa nội dung */
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust this value based on your layout */
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    background-color: gray;
+    border-radius: 50%;
+    font-size: 37px;
+    color: black;
+  }
