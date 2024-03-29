@@ -3,10 +3,13 @@ import React from "react";
 import EachUsersMemo from "./subcomps/EachUsersMemo";
 import { useMemo } from "react";
 import store, { getAllMemosFromLocal } from "../store/store";
+import { useSelector } from "react-redux";
 
 export default function Memos() {
   // get all from ls, and then copy back to redux
   const allUsersMemos = useMemo(getAllMemosFromLocal, []);
+
+  const useSelect = useSelector((state) => state.memos);
 
   return (
     <div className="flex justify-center">
@@ -16,7 +19,7 @@ export default function Memos() {
         </p>
 
         {allUsersMemos.length > 0 ? (
-          allUsersMemos.map((eachMemo) => (
+          useSelect.map((eachMemo) => (
             <EachUsersMemo
               id={eachMemo.id}
               note={eachMemo.content}

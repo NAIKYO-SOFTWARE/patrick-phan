@@ -5,6 +5,7 @@ import store, {
   dispatchAddMemo,
   dispatchToggleComplete,
 } from "../../store/store";
+import { useSelector } from "react-redux";
 
 // we have color, note's content to be saved to redux global
 
@@ -14,8 +15,6 @@ export default function EachUsersMemo(props) {
   const toggleComplete = () => {
     dispatchToggleComplete(props.id, dispatch);
   };
-
-  store.subscribe(() => {});
 
   return (
     <div key={props.id} className="flex w-[480px] justify-between mt-[13px]">
@@ -36,7 +35,11 @@ export default function EachUsersMemo(props) {
           {props.note}
         </span>
 
-        <div className="h-[18px] w-[18px] bg-white rounded-full border border-solid"></div>
+        <div
+          className={`h-[18px] w-[18px] ${
+            props.complete ? "bg-gray-300" : "bg-white"
+          } rounded-full border border-solid`}
+        ></div>
       </div>
     </div>
   );
