@@ -15,6 +15,8 @@ export default function EachUsersMemo(props) {
     dispatchToggleComplete(props.id, dispatch);
   };
 
+  store.subscribe(() => {});
+
   return (
     <div key={props.id} className="flex w-[480px] justify-between mt-[13px]">
       <div

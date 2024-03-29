@@ -70,8 +70,6 @@ export function dispatchAddMemo(color, content, dispatch) {
       payload: newMemo,
     });
 
-    console.log("State redux after adding memo: ", store.getState());
-
     const updatedMemos = [...memosGetBeforeAddNewOne, newMemo];
 
     localStorage.setItem("memos", JSON.stringify(updatedMemos));
@@ -88,6 +86,11 @@ export function dispatchToggleComplete(id, dispatch) {
     type: "TOGGLE_COMPLETE",
     payload: { id: id },
   });
+
+  console.log(store.getState().memos);
+  const afterToggle = store.getState().memos;
+
+  localStorage.setItem("memos", JSON.stringify(afterToggle));
 
   console.log(id);
 }
