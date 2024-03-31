@@ -92,10 +92,12 @@ export function dispatchToggleComplete(id, dispatch) {
     payload: { id: id },
   });
 
-  console.log(store.getState().memos);
-  const afterToggle = store.getState().memos;
+  localStorage.setItem("memos", JSON.stringify(store.getState().memos));
+}
 
-  localStorage.setItem("memos", JSON.stringify(afterToggle));
+// DELETE_MEMO
+export function dispatchDeleteMemo(id, dispatch) {
+  dispatch({ type: "DELETE_MEMO", payload: { id: id } });
 
-  console.log(id);
+  localStorage.setItem("memos", JSON.stringify(store.getState().memos));
 }

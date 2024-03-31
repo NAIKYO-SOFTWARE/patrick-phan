@@ -21,9 +21,9 @@ export default function Memos() {
   };
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center transform translate-x-[85px]">
       <div className="flex flex-col">
-        <p className="italic w-[380px] mt-10 mb-2 text-[28px] text-center text-gray-600">
+        <p className="italic w-[380px] transform translate-x-[-36px] mt-10 mb-2 text-[28px] text-center text-gray-600">
           Here displays all the user's personal memos
         </p>
 
@@ -64,7 +64,7 @@ export default function Memos() {
 
         <button
           onClick={() => (window.location.href = "/suggestions")}
-          className="mt-12 cursor-pointer text-gray-600 text-[26px]"
+          className="mt-12 cursor-pointer text-gray-600 text-[26px] transform translate-x-[-80px]"
         >
           &lt;&lt; Return back to add memos.
         </button>
