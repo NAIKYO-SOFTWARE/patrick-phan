@@ -4,12 +4,21 @@ import EachUsersMemo from "./subcomps/EachUsersMemo";
 import { useMemo } from "react";
 import store, { getAllMemosFromLocal } from "../store/store";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 export default function Memos() {
   // get all from ls, and then copy back to redux
   const allUsersMemos = useMemo(getAllMemosFromLocal, []);
 
-  const useSelect = useSelector((state) => state.memos);
+  const [showUpIncomplete, setShowUpIncomplete] = useState(false);
+
+  const allMemos = useSelector((state) => state.memos);
+
+  const showIncompletedMemos = () => {
+    setShowUpIncomplete(!showUpIncomplete);
+  };
 
   return (
     <div className="flex justify-center">
@@ -18,15 +27,35 @@ export default function Memos() {
           Here displays all the user's personal memos
         </p>
 
+        <button
+          className="h-[30px] w-[200px] rounded-lg bg-violet-400 "
+          onClick={showIncompletedMemos}
+        >
+          {`see ${showUpIncomplete === true ? "all" : "incompleted"} memos`}
+        </button>
+
         {allUsersMemos.length > 0 ? (
-          useSelect.map((eachMemo) => (
-            <EachUsersMemo
-              id={eachMemo.id}
-              note={eachMemo.content}
-              color={eachMemo.color}
-              complete={eachMemo.complete}
-            />
-          ))
+          showUpIncomplete === true ? (
+            allMemos
+              .filter((eachMemo) => eachMemo.complete === false)
+              .map((eachMemo) => (
+                <EachUsersMemo
+                  id={eachMemo.id}
+                  note={eachMemo.content}
+                  color={eachMemo.color}
+                  complete={eachMemo.complete}
+                />
+              ))
+          ) : (
+            allMemos.map((eachMemo) => (
+              <EachUsersMemo
+                id={eachMemo.id}
+                note={eachMemo.content}
+                color={eachMemo.color}
+                complete={eachMemo.complete}
+              />
+            ))
+          )
         ) : (
           <p className="mt-12 cursor-pointer text-gray-600 text-[26px]">
             No memos have made.

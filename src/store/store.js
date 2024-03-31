@@ -1,13 +1,13 @@
-import { useDispatch } from "react-redux";
 import addMemoReducer from "../reducer/addMemoReducer";
 import loginReducer from "../reducer/loginReducer";
 import { configureStore } from "@reduxjs/toolkit";
-// import { useId } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 const store = configureStore({
-  // will do 'add memo to global state'
-  reducer: { login: loginReducer, memos: addMemoReducer },
+  reducer: {
+    login: loginReducer, //login là key chứa dữ liệu là redux's state
+    memos: addMemoReducer, // memo cũng là key
+  },
 });
 
 export default store;
@@ -27,7 +27,12 @@ export function dispatchLoginSuccess(email, dispatch) {
     const login = store.getState().login;
 
     // để sau khi refresh page lại thì nó vẫn copy ngược từ redux -> local -> redux mới sau đăng nhập
-    localStorage.setItem("login", JSON.stringify({ ...login }));
+    localStorage.setItem(
+      "login",
+      JSON.stringify(
+        { ...login } // get mọi thứ từ key 'login' bên trong redux global state: login status, who is currently logged in
+      )
+    );
 
     window.location.href = "/suggestions";
   } catch (error) {

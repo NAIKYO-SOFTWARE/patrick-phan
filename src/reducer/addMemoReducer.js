@@ -16,15 +16,20 @@ const addMemoReducer = (state = initialState, action) => {
           complete: false,
         },
       ];
+    // will do "DELETE_MEMO"
     // !complete
     case "TOGGLE_COMPLETE":
-      return state.map((memo) =>
-        memo.id === action.payload.id
-          ? { ...memo, complete: !memo.complete }
-          : memo
+      return state.map(
+        (eachMemo) =>
+          eachMemo.id === action.payload.id
+            ? {
+                ...eachMemo, // each memo's keys before that
+                complete: !eachMemo.complete, // then, only change the key 'complete'
+              }
+            : eachMemo // the currrent memo's id is not the chosen id of memo needed to be deleted
       );
     default:
-      return state;
+      return state; // toggle insuccessful, return to redux the state
   }
 };
 
