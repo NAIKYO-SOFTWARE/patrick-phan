@@ -1,10 +1,4 @@
-import React from "react";
 import MemoSug from "./subcomps/MemoSug";
-import { useEffect } from "react";
-import store from "../store/store";
-import { useSelector } from "react-redux";
-import { useState } from "react";
-import { Link } from "react-router-dom";
 
 export default function Suggestions() {
   const green = "#86EFAC";
@@ -28,12 +22,17 @@ export default function Suggestions() {
     <div className="flex justify-center">
       <div className="flex flex-col">
         <p className="italic w-[380px] mt-10 mb-2 text-[28px] text-center text-gray-600">
-          These memos are used for examples only, hit the '+' button to simulate
-          user is adding memos for real
+          {`These memos are used for examples only, hit the '+' button to simulate
+          user is adding memos for real`}
         </p>
 
         {memos.map((memo) => (
-          <MemoSug id={memo.id} color={memo.color} note={memo.note} />
+          <MemoSug
+            key={memo.id}
+            id={memo.id}
+            color={memo.color}
+            note={memo.note}
+          />
         ))}
 
         <button

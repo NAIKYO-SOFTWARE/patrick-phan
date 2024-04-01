@@ -1,11 +1,8 @@
 // ở đây sẽ hồi tất cả mọi redux state về những memo đã thêm
-import React from "react";
 import EachUsersMemo from "./subcomps/EachUsersMemo";
 import { useMemo } from "react";
-import store, { getAllMemosFromLocal } from "../store/store";
+import { getAllMemosFromLocal } from "../store/store";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 export default function Memos() {
@@ -24,7 +21,7 @@ export default function Memos() {
     <div className="flex justify-center transform translate-x-[85px]">
       <div className="flex flex-col">
         <p className="italic w-[380px] transform translate-x-[-36px] mt-10 mb-2 text-[28px] text-center text-gray-600">
-          Here displays all the user's personal memos
+          {`Here displays all the user's personal memos`}
         </p>
 
         <button
@@ -40,6 +37,7 @@ export default function Memos() {
               .filter((eachMemo) => eachMemo.complete === false)
               .map((eachMemo) => (
                 <EachUsersMemo
+                  key={eachMemo.id}
                   id={eachMemo.id}
                   note={eachMemo.content}
                   color={eachMemo.color}
@@ -49,6 +47,7 @@ export default function Memos() {
           ) : (
             allMemos.map((eachMemo) => (
               <EachUsersMemo
+                key={eachMemo.id}
                 id={eachMemo.id}
                 note={eachMemo.content}
                 color={eachMemo.color}

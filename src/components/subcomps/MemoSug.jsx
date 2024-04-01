@@ -1,7 +1,6 @@
-import React from "react";
 import "../../custom.css";
 import { useDispatch } from "react-redux";
-import store, { dispatchAddMemo } from "../../store/store";
+import { dispatchAddMemo, dispatchToggleComplete } from "../../store/store";
 
 // we have color, note's content to be saved to redux global
 

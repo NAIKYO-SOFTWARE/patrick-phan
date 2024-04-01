@@ -1,4 +1,3 @@
-import React from "react";
 import "../../custom.css";
 import { useDispatch } from "react-redux";
 import { dispatchDeleteMemo, dispatchToggleComplete } from "../../store/store";
