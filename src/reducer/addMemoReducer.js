@@ -3,8 +3,10 @@ const initialState = [];
 
 const addMemoReducer = (state = initialState, action) => {
   switch (action.type) {
+    // get all memos from localstorage
     case "GET_ALL_MEMOS_FROM_LOCALSTORAGE":
       return [...action.payload];
+
     // add one memo
     case "ADD_MEMO":
       return [
@@ -16,9 +18,11 @@ const addMemoReducer = (state = initialState, action) => {
           complete: false,
         },
       ];
+
     // "DELETE_MEMO"
     case "DELETE_MEMO":
       return state.filter((eachMemo) => eachMemo.id !== action.payload.id);
+
     // !complete
     case "TOGGLE_COMPLETE":
       return state.map(
@@ -30,6 +34,7 @@ const addMemoReducer = (state = initialState, action) => {
               }
             : eachMemo // the currrent memo's id is not the chosen id of memo needed to be deleted
       );
+
     default:
       return state; // toggle insuccessful, return to redux the state
   }
